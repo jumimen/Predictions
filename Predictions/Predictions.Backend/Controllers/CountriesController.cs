@@ -7,7 +7,7 @@ namespace Predictions.Backend.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class CountriesController : ControllerBase
+    public class CountriesController : Controller
     {
         private readonly DataContext _context;
 
@@ -47,11 +47,16 @@ namespace Predictions.Backend.Controllers
         }
 
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> PostAsync(Country country)
         {
+            if (country == null)
+                return BadRequest("El país no puede ser nulo.");
             _context.Add(country);
             await _context.SaveChangesAsync();
-            return Ok(country);
+            var uri = Url.Action("GetAsync", new { id = country.Id });
+            return Created(uri, country);
         }
 
         [HttpPut]

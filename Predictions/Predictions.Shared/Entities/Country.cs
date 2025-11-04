@@ -1,8 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore;
 
 namespace Predictions.Shared.Entities
 {
-    [Microsoft.EntityFrameworkCore.Index(nameof(Name), IsUnique = true)]
+    [Index(nameof(Name), IsUnique = true)]
     public class Country
     {
         public int Id { get; set; }

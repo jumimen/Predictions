@@ -1,0 +1,37 @@
+﻿@page "/countries"
+
+<h3>Paises</h3>
+
+<div class="mb-3">
+    <a class="btn btn-primary" href="/countries/create">New Country</a>
+</div>
+
+<GenericList MyList="Countries">
+    <Body>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>NOMBRE</th>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var pais in Countries!)
+                {
+                    <tr>
+                        <td>@pais.Id</td>
+                        <td>@pais.Name</td>
+                        <td><a class="btn btn-warning">Editar</a><button class="btn btn-danger">Borrar</button></td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+
+    </Body>
+</GenericList>
+
+
+
+
