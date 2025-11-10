@@ -1,34 +1,29 @@
 ﻿@page "/countries"
 
-<h3>Paises</h3>
+@* <h3>@Localizer["Countries"]</h3> *@
+<MudPaper Class="pa-4">
+    <MudText Typo="Typo.h5" GutterBottom="true">@Localizer["Countries"]</MudText>
+    <MudButton Color="Color.Primary" Variant="Variant.Filled" Href="/countries/create">
+        @Localizer["New"] @Localizer["Country"]
+    </MudButton>
+ </MudPaper>
 
-<div class="mb-3">
-    <a class="btn btn-primary" href="/countries/create">New Country</a>
-</div>
 
 <GenericList MyList="Countries">
     <Body>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>NOMBRE</th>
-                    <td></td>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var pais in Countries!)
-                {
-                    <tr>
-                        <td>@pais.Id</td>
-                        <td>@pais.Name</td>
-                        <td><a class="btn btn-warning">Editar</a><button class="btn btn-danger">Borrar</button></td>
-                    </tr>
-                }
-
-            </tbody>
-        </table>
-
+        <MudTable Items="@Countries" Striped="true" Hover="true">
+            <HeaderContent>
+                <MudTh>@Localizer["Name"]</MudTh>
+                <MudTh></MudTh>
+            </HeaderContent>
+            <RowTemplate>
+                <MudTd DataLabel="@Localizer["Name"]">@context.Name</MudTd>
+                <MudTd>
+                    <MudButton Variant="Variant.Filled" Color="Color.Warning" Href="/countries/edit/{context.Id}">@Localizer["Edit"]</MudButton>
+                    <MudButton Variant="Variant.Filled" Color="Color.Error">@Localizer["Delete"]</MudButton>
+                </MudTd>
+            </RowTemplate>
+        </MudTable>
     </Body>
 </GenericList>
 

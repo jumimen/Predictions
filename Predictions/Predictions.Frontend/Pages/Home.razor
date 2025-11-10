@@ -1,0 +1,11 @@
+﻿@page "/"
+@using Microsoft.Extensions.Localization
+@using Predictions.Shared.Resources
+
+<PageTitle>HOME</PageTitle>
+<h1>@Localizer["Title"]</h1>
+<h2>@Localizer["Subtitle"]</h2>
+
+@code{
+    [Inject] private IStringLocalizer<Literals> Localizer { get; set; } = null!;
+}
